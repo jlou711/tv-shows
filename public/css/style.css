@@ -1,0 +1,9 @@
+.card-episode {
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-rows: auto 75px 150px;
+  overflow: scroll;
+}
+.card-episode img {
+  width: 400px;
+}
