@@ -27,7 +27,9 @@ export function Episode(props: IEpisode): JSX.Element {
           {String(props.number).padStart(2, "0")} - {props.name}
         </h1>
         <p className="card-summary">
-          {props.summary.replaceAll(/(<\/?p>)/g, "")}
+          {props.summary
+            .replaceAll(/(<\/?p>)/g, "")
+            .replaceAll(/(<\/?br>)/g, "")}
         </p>
       </section>
     </>

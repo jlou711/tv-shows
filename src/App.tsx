@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Episode, IEpisode } from "./components/episode";
+import { SearchBar } from "./components/searchBar";
 import episodes from "./episodes.json";
 
 function mergeArray(arr: IEpisode[]): IEpisode[][] {
@@ -9,11 +11,32 @@ function mergeArray(arr: IEpisode[]): IEpisode[][] {
   }
   return returnArray;
 }
-const mergedEpisodes = mergeArray(episodes);
+
+function filterSearchInput(searchInput: string, arr: IEpisode): boolean {
+  return (
+    arr.name.toLocaleLowerCase().includes(searchInput.toLowerCase()) ||
+    arr.summary.toLowerCase().includes(searchInput.toLowerCase())
+  );
+}
+const totalEpisodes = episodes.length;
 
 function App(): JSX.Element {
+  const [searchInput, setSearchInput] = useState("");
+  const filteredEpisodes = episodes.filter((x) =>
+    filterSearchInput(searchInput, x)
+  );
+  const filteredLength = filteredEpisodes.length;
+  const mergedEpisodes = mergeArray(filteredEpisodes);
   return (
     <>
+      <header>
+        <div>
+          <SearchBar input={searchInput} onChange={setSearchInput}></SearchBar>
+          <p>
+            Displaying {filteredLength} of {totalEpisodes} episodes
+          </p>
+        </div>
+      </header>
       <main>
         <table>
           <tbody>
