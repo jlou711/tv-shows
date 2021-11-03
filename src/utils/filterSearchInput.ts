@@ -8,11 +8,11 @@ export function filterSearchInput(
 ): boolean {
   if (episodeInput) {
     return seasonify(String(arr.season), String(arr.number), arr.name)
-      .toLocaleLowerCase()
+      .toLowerCase()
       .includes(episodeInput.toLowerCase());
   } else {
     return (
-      arr.name.toLocaleLowerCase().includes(searchInput.toLowerCase()) ||
+      arr.name.toLowerCase().includes(searchInput.toLowerCase()) ||
       arr.summary.toLowerCase().includes(searchInput.toLowerCase())
     );
   }

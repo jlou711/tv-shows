@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Episode } from "./components/episode";
 import { SearchBar } from "./components/searchBar";
 import { EpisodePicker } from "./components/episodePicker";
 import { filterSearchInput } from "./utils/filterSearchInput";
-import episodes from "./episodes.json";
+//import episodes from "./episodes.json";
 
 function App(): JSX.Element {
   const [searchInput, setSearchInput] = useState("");
   const [episodeInput, setEpisodeInput] = useState("");
+  const [episodes, setEpisodes] = useState([]);
+  useEffect(() => {
+    const loadEpisodes = async () => {
+      const resp = await fetch("https://api.tvmaze.com/shows/86/episodes");
+      const jsonBody = await resp.json();
+      setEpisodes(jsonBody);
+    };
+    loadEpisodes();
+  }, []);
   const filteredEpisodes = episodes.filter((x) =>
     filterSearchInput(searchInput, x, episodeInput)
   );
@@ -28,8 +37,8 @@ function App(): JSX.Element {
         </div>
       </header>
       <main className="main-episode">
-        {filteredEpisodes.map((x) => {
-          return <Episode key={x.name} {...x} />;
+        {filteredEpisodes.map((x, i) => {
+          return <Episode key={i} {...x} />;
         })}
       </main>
       <footer>

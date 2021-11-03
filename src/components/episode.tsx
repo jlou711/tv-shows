@@ -11,7 +11,7 @@ export interface IEpisode {
   airtime: string;
   airstamp: string;
   runtime: number;
-  image?: {
+  image: {
     medium: string;
     original: string;
   } | null;
