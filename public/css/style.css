@@ -1,9 +1,18 @@
+.nav-bar {
+  display: flex;
+}
+.main-episode {
+  display: flex;
+  flex-flow: wrap;
+}
 .card-episode {
   display: grid;
   grid-template-columns: 400px;
-  grid-template-rows: auto 75px 150px;
+  grid-template-rows: auto auto auto;
   overflow: scroll;
+  margin: 15px;
 }
 .card-episode img {
   width: 400px;
+  min-height: 224px;
 }

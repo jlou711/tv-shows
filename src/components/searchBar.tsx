@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface ISearchBar {
   input: string;
   onChange: (value: string) => void;

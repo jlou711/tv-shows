@@ -1,58 +1,36 @@
 import { useState } from "react";
-import { Episode, IEpisode } from "./components/episode";
+import { Episode } from "./components/episode";
 import { SearchBar } from "./components/searchBar";
+import { EpisodePicker } from "./components/episodePicker";
+import { filterSearchInput } from "./utils/filterSearchInput";
 import episodes from "./episodes.json";
-
-function mergeArray(arr: IEpisode[]): IEpisode[][] {
-  const returnArray = [];
-  const l = arr.length;
-  for (let i = 0; i < l; i += 3) {
-    returnArray.push([...arr.splice(0, 3)]);
-  }
-  return returnArray;
-}
-
-function filterSearchInput(searchInput: string, arr: IEpisode): boolean {
-  return (
-    arr.name.toLocaleLowerCase().includes(searchInput.toLowerCase()) ||
-    arr.summary.toLowerCase().includes(searchInput.toLowerCase())
-  );
-}
-const totalEpisodes = episodes.length;
 
 function App(): JSX.Element {
   const [searchInput, setSearchInput] = useState("");
+  const [episodeInput, setEpisodeInput] = useState("");
   const filteredEpisodes = episodes.filter((x) =>
-    filterSearchInput(searchInput, x)
+    filterSearchInput(searchInput, x, episodeInput)
   );
-  const filteredLength = filteredEpisodes.length;
-  const mergedEpisodes = mergeArray(filteredEpisodes);
+
   return (
     <>
       <header>
-        <div>
+        <div className="nav-bar">
+          <EpisodePicker
+            episodes={episodes}
+            input={episodeInput}
+            onChange={setEpisodeInput}
+          ></EpisodePicker>
           <SearchBar input={searchInput} onChange={setSearchInput}></SearchBar>
           <p>
-            Displaying {filteredLength} of {totalEpisodes} episodes
+            Displaying {filteredEpisodes.length} of {episodes.length} episodes
           </p>
         </div>
       </header>
-      <main>
-        <table>
-          <tbody>
-            {mergedEpisodes.map((x, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <Episode {...x[0]} />
-                  </td>
-                  <td>{x[1] ? <Episode {...x[1]} /> : null}</td>
-                  <td>{x[2] ? <Episode {...x[2]} /> : null}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <main className="main-episode">
+        {filteredEpisodes.map((x) => {
+          return <Episode key={x.name} {...x} />;
+        })}
       </main>
       <footer>
         <a href="https://tvmaze.com/">
