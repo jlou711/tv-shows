@@ -6,8 +6,8 @@ export interface ISearchBar {
 export function SearchBar(props: ISearchBar): JSX.Element {
   return (
     <>
-      <label htmlFor="search-bar">Search bar </label>
       <input
+        placeholder="Search for an episode.."
         type="text"
         id="search-bar"
         value={props.input}

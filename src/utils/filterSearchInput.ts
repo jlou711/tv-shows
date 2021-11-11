@@ -1,4 +1,4 @@
-import { IEpisode } from "../components/episode";
+import { IEpisode } from "../components/IEpisode";
 import { seasonify } from "./seasonify";
 
 export function filterSearchInput(

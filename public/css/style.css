@@ -1,18 +1,50 @@
+body {
+  background: darkgrey;
+}
+
+h1,
+p {
+  font-family: monospace;
+}
+
+footer {
+  border-top: 10px solid darkslategrey;
+  padding-top: 10px;
+}
+
 .nav-bar {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 10px solid darkslategrey;
+}
+
+.nav-bar input,
+.nav-bar select {
+  width: 20%;
+  border: none;
+  background: none;
+}
+
+.nav-bar input::placeholder {
+  color: black;
 }
 .main-episode {
   display: flex;
   flex-flow: wrap;
 }
 .card-episode {
-  display: grid;
-  grid-template-columns: 400px;
-  grid-template-rows: auto auto auto;
-  overflow: scroll;
+  flex: 1 0 30%;
   margin: 15px;
+  text-align: center;
 }
 .card-episode img {
-  width: 400px;
-  min-height: 224px;
+  border: 5px solid #555;
+  width: 100%;
+  max-width: 400px;
+}
+
+.card-episode-top {
+  display: flex;
+  justify-content: center;
 }
