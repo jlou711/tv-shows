@@ -29,22 +29,41 @@ footer {
 .nav-bar input::placeholder {
   color: black;
 }
-.main-episode {
+.main-episode,
+.main-show {
   display: flex;
   flex-flow: wrap;
 }
-.card-episode {
+.card-episode,
+.card-show {
   flex: 1 0 30%;
   margin: 15px;
   text-align: center;
+  height: min-content;
 }
-.card-episode img {
+.card-episode,
+.card-show p {
+  overflow: scroll;
+}
+
+.card-summary-show {
+  height: 75px;
+}
+
+.card-episode img,
+.card-show img {
   border: 5px solid #555;
   width: 100%;
   max-width: 400px;
 }
 
-.card-episode-top {
+.card-episode-top,
+.card-show-top {
   display: flex;
   justify-content: center;
+}
+
+.card-show-details {
+  background: darkseagreen;
+  border: 5px solid lightgray;
 }

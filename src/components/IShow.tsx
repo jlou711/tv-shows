@@ -1,8 +1,3 @@
-// export interface IShow {
-//   id: number;
-//   name: string;
-// }
-
 export interface IShow {
   id: number;
   url: string;

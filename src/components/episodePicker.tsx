@@ -16,7 +16,14 @@ export function EpisodePicker(props: IEpisodePicker): JSX.Element {
       <option value="">Choose an episode</option>
       {props.episodes.map((episode) => {
         return (
-          <option key={episode.id} value={episode.name}>
+          <option
+            key={episode.id}
+            value={seasonify(
+              String(episode.season),
+              String(episode.number),
+              episode.name
+            )}
+          >
             {seasonify(
               String(episode.season),
               String(episode.number),
