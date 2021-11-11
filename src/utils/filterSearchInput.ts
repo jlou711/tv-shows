@@ -13,7 +13,9 @@ export function filterSearchInput(
   } else {
     return (
       arr.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-      arr.summary.toLowerCase().includes(searchInput.toLowerCase())
+      (arr.summary
+        ? arr.summary.toLowerCase().includes(searchInput.toLowerCase())
+        : false)
     );
   }
 }

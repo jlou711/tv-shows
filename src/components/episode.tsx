@@ -16,9 +16,10 @@ export function Episode(props: IEpisode): JSX.Element {
           {seasonify(String(props.season), String(props.number), props.name)}
         </h1>
         <p className="card-summary">
-          {props.summary
-            .replaceAll(/(<\/?p>)/g, "")
-            .replaceAll(/(<\/?br>)/g, "")}
+          {props.summary &&
+            props.summary
+              .replaceAll(/(<\/?p>)/g, "")
+              .replaceAll(/(<\/?br>)/g, "")}
         </p>
       </section>
     </>
